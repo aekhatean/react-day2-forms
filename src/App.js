@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
 function App() {
+  const [currentFormLogin, setCurrentForm] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container mt-5">
+      <div className="row justify-content-between">
+        <section className="forms-section col-md-4">
+          {currentFormLogin ? <LoginForm /> : <RegisterForm />}
+        </section>
+        <section className="change-button-section col-md-4">
+          <Button
+            variant="outline-info"
+            onClick={() => setCurrentForm(!currentFormLogin)}
+          >
+            {currentFormLogin ? "Register instead" : "Login instead"}
+          </Button>
+        </section>
+      </div>
     </div>
   );
 }
